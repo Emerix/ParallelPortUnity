@@ -14,6 +14,8 @@ public class ParallelPort : MonoBehaviour {
     private static extern UInt32 IsInpOutDriverOpen_x64();
     [SerializeField]
     int PortAdress = 889;
+    [SerializeField]
+    int NumberToSend = 8;
     void Start () {
         uint nResult = IsInpOutDriverOpen_x64();
 
@@ -35,7 +37,7 @@ public class ParallelPort : MonoBehaviour {
     IEnumerator ParallelCoroutine()
     {
         Debug.Log("Beep");
-        Output(PortAdress, 5);
+        Output(PortAdress, NumberToSend);
         yield return new WaitForSecondsRealtime(0.005f);
         Output(PortAdress, 0);
         Debug.Log("Unbeep");
